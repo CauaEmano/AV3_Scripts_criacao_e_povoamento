@@ -11,6 +11,7 @@ CREATE TABLE Edicao(
   	ano NUMBER,
   	data_inicio DATE CONSTRAINT nn_data_inicio_edicao NOT NULL,
   	data_fim DATE CONSTRAINT nn_data_fim_edicao NOT NULL,
+	CONSTRAINT chk_edicao_datas CHECK (data_fim >= data_inicio),
   	CONSTRAINT pk_edicao PRIMARY KEY(cod_evento, ano)
 );
 
@@ -31,4 +32,51 @@ CREATE TABLE EdicaoLocal(
   	ano NUMBER, -- FK Edicao(ano)
 	cod_local NUMBER, -- FK Local(cod_local)
   	CONSTRAINT pk_edicao_local PRIMARY KEY(cod_evento, ano, cod_local)
+);
+
+CREATE TABLE Empresa(
+	cnpj VARCHAR2(14),
+	nome_comercial VARCHAR2(100) CONSTRAINT nn_nome_comercial_empresa NOT NULL,
+	nome_juridico VARCHAR2(100) CONSTRAINT nn_nome_juridico_empresa NOT NULL,
+	CONSTRAINT pk_empresa PRIMARY KEY(cnpj)
+);
+
+CREATE TABLE Produto(
+	cod_produto NUMBER,
+	nome VARCHAR2(100) CONSTRAINT nn_nome_produto NOT NULL,
+	tipo VARCHAR2(50) CONSTRAINT nn_tipo_produto NOT NULL,
+	preco NUMBER CONSTRAINT nn_preco_produto NOT NULL,
+	estoque_inicial NUMBER CONSTRAINT nn_estoque_inicial_produto NOT NULL,
+	CONSTRAINT chk_produto_preco CHECK (preco >= 0),
+	CONSTRAINT chk_produto_estoque CHECK (estoque_inicial >= 0),
+	CONSTRAINT pk_produto PRIMARY KEY(cod_produto)
+);
+
+CREATE TABLE Estande(
+	cod_estande NUMBER,
+	cod_local NUMBER, -- FK Area(cod_local)
+	cod_area NUMBER, -- FK Area(cod_area)
+	cod_evento NUMBER, -- FK Edicao(cod_evento)
+	ano NUMBER, -- FK Edicao(ano)
+	cnpj_empresa VARCHAR2(14), -- FK Empresa(cnpj)
+	aluguel_inicio DATE,
+	aluguel_fim DATE,
+	CONSTRAINT chk_estande_aluguel CHECK (aluguel_fim >= aluguel_inicio),
+	CONSTRAINT pk_estande PRIMARY KEY(cod_estande)
+);
+
+CREATE TABLE Disponibiliza(
+	cnpj_empresa VARCHAR2(14), -- FK Empresa(cnpj)
+	cod_estande NUMBER, -- FK Estande(cod_estande)
+	cod_produto NUMBER, -- FK Produto(cod_produto)
+	CONSTRAINT pk_disponibiliza PRIMARY KEY(cnpj_empresa, cod_estande, cod_produto)
+);
+
+CREATE TABLE Patrocina(
+	cnpj_empresa VARCHAR2(14), -- FK Empresa(cnpj)
+	cod_evento NUMBER, -- FK Edicao(cod_evento)
+	ano NUMBER, -- FK Edicao(ano)
+	cota_investimento NUMBER CONSTRAINT nn_cota_investimento_patrocina NOT NULL,
+	CONSTRAINT chk_patrocina_cota CHECK (cota_investimento > 0),
+	CONSTRAINT pk_patrocina PRIMARY KEY(cnpj_empresa, cod_evento, ano)
 );
