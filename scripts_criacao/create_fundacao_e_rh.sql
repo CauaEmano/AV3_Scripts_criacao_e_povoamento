@@ -32,3 +32,28 @@ CREATE TABLE Local(
     cep VARCHAR2(8) CONSTRAINT nn_cep_local NOT NULL, -- FK Cep(cep)
     CONSTRAINT pk_local PRIMARY KEY(cod_local)
 );
+
+CREATE TABLE CargoFuncionario(
+    cargo VARCHAR2(50),
+    setor VARCHAR2(50),
+    CONSTRAINT pk_cargo_funcionario PRIMARY KEY(cargo)
+);
+
+CREATE TABLE Funcionario (
+    cpf_funcionario VARCHAR2(11), -- FK Pessoa(cpf)
+    cargo VARCHAR2(50) CONSTRAINT nn_cargo_funcionario NOT NULL, -- FK CargoFuncionario(cargo)
+    turno VARCHAR2(30),
+    salario NUMBER,
+    cpf_supervisor VARCHAR2(11), -- FK Funcionario(cpf_funcionario), nullable
+    CONSTRAINT pk_funcionario PRIMARY KEY(cpf_funcionario),
+    CONSTRAINT fk_cpf_supervisor_funcionario_funcionario FOREIGN KEY(cpf_supervisor) REFERENCES Funcionario(cpf_funcionario)
+);
+
+CREATE TABLE Contrata (
+    cpf_funcionario VARCHAR2(11), -- FK Funcionario(cpf_funcionario)
+    cod_evento NUMBER, -- FK Edicao(cod_evento, ano)
+    ano NUMBER, -- FK Edicao(cod_evento, ano)
+    carga_horaria_prevista NUMBER,
+    carga_horaria_realizada NUMBER,
+    CONSTRAINT pk_contrata PRIMARY KEY(cpf_funcionario, cod_evento, ano)
+);
