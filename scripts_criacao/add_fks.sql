@@ -51,3 +51,48 @@ ADD CONSTRAINT fk_cnpj_empresa_patrocina_empresa FOREIGN KEY(cnpj_empresa) REFER
 
 ALTER TABLE Patrocina
 ADD CONSTRAINT fk_cod_evento_ano_patrocina_edicao FOREIGN KEY(cod_evento, ano) REFERENCES Edicao(cod_evento, ano);
+
+ALTER TABLE InstanciaIngresso
+ADD CONSTRAINT fk_cod_evento_ano_instancia_ingresso_edicao FOREIGN KEY(cod_evento, ano) REFERENCES Edicao(cod_evento, ano);
+
+ALTER TABLE Ingresso
+ADD CONSTRAINT fk_cpf_pessoa_ingresso_pessoa FOREIGN KEY(cpf_pessoa) REFERENCES Pessoa(cpf);
+
+ALTER TABLE Ingresso
+ADD CONSTRAINT fk_cod_evento_ano_tipo_lote_ingresso_instancia_ingresso FOREIGN KEY(cod_evento, ano, tipo, lote) REFERENCES InstanciaIngresso(cod_evento, ano, tipo, lote);
+
+ALTER TABLE CompraIngresso
+ADD CONSTRAINT fk_cod_ingresso_compra_ingresso_ingresso FOREIGN KEY(cod_ingresso) REFERENCES Ingresso(codigo);
+
+ALTER TABLE CompraIngresso
+ADD CONSTRAINT fk_cpf_comprador_compra_ingresso_pessoa FOREIGN KEY(cpf_comprador) REFERENCES Pessoa(cpf);
+
+ALTER TABLE CompraIngresso
+ADD CONSTRAINT fk_cod_recibo_compra_ingresso_recibo FOREIGN KEY(cod_recibo) REFERENCES Recibo(codigo);
+
+ALTER TABLE CompraIngresso
+ADD CONSTRAINT fk_cod_cupom_compra_ingresso_cupom FOREIGN KEY(cod_cupom) REFERENCES Cupom(codigo);
+
+ALTER TABLE Atividade
+ADD CONSTRAINT fk_cod_local_cod_area_atividade_area FOREIGN KEY(cod_local, cod_area) REFERENCES Area(cod_local, cod_area);
+
+ALTER TABLE Atividade
+ADD CONSTRAINT fk_cod_evento_ano_atividade_edicao FOREIGN KEY(cod_evento, ano) REFERENCES Edicao(cod_evento, ano);
+
+ALTER TABLE Atracao
+ADD CONSTRAINT fk_cod_atv_atracao_atividade FOREIGN KEY(cod_atv) REFERENCES Atividade(cod_atv);
+
+ALTER TABLE Torneio
+ADD CONSTRAINT fk_cod_atv_torneio_atividade FOREIGN KEY(cod_atv) REFERENCES Atividade(cod_atv);
+
+ALTER TABLE Assiste
+ADD CONSTRAINT fk_cpf_assiste_pessoa FOREIGN KEY(cpf) REFERENCES Pessoa(cpf);
+
+ALTER TABLE Assiste
+ADD CONSTRAINT fk_cod_atv_assiste_atividade FOREIGN KEY(cod_atv) REFERENCES Atividade(cod_atv);
+
+ALTER TABLE Inscreve
+ADD CONSTRAINT fk_cpf_inscreve_pessoa FOREIGN KEY(cpf) REFERENCES Pessoa(cpf);
+
+ALTER TABLE Inscreve
+ADD CONSTRAINT fk_cod_torneio_inscreve_torneio FOREIGN KEY(cod_torneio) REFERENCES Torneio(cod_atv);
