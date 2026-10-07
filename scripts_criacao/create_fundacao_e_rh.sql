@@ -46,7 +46,8 @@ CREATE TABLE Funcionario (
     salario NUMBER,
     cpf_supervisor VARCHAR2(11), -- FK Funcionario(cpf_funcionario), nullable
     CONSTRAINT pk_funcionario PRIMARY KEY(cpf_funcionario),
-    CONSTRAINT fk_cpf_supervisor_funcionario_funcionario FOREIGN KEY(cpf_supervisor) REFERENCES Funcionario(cpf_funcionario)
+    CONSTRAINT fk_cpf_supervisor_funcionario_funcionario FOREIGN KEY(cpf_supervisor) REFERENCES Funcionario(cpf_funcionario),
+    CONSTRAINT chk_salario_funcionario_gt_0 CHECK(salario > 0)
 );
 
 CREATE TABLE Contrata (
