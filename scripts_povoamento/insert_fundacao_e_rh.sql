@@ -112,3 +112,96 @@ VALUES ('77777777777', 1, 2026, 28, 30);
 
 INSERT INTO Contrata (cpf_funcionario, cod_evento, ano, carga_horaria_prevista, carga_horaria_realizada)
 VALUES ('88888888888', 1, 2026, 24, 24);
+
+-- PESSOA --
+INSERT INTO Pessoa VALUES ('11122233301', 'João', 'Souza Barros', DATE'2000-01-01');
+INSERT INTO Pessoa VALUES ('11122233302', 'Maria', 'Fernanda Oliveira', DATE'1995-03-14');
+INSERT INTO Pessoa VALUES ('11122233303', 'Carlos', 'Eduardo Lima', DATE'1988-07-22');
+INSERT INTO Pessoa VALUES ('11122233304', 'Ana', 'Beatriz Santos', DATE'2003-11-05');
+INSERT INTO Pessoa VALUES ('11122233305', 'Pedro', 'Henrique Albuquerque', DATE'1992-09-30');
+INSERT INTO Pessoa VALUES ('11122233306', 'Juliana', 'Costa Ribeiro', DATE'1999-05-18');
+INSERT INTO Pessoa VALUES ('11122233307', 'Lucas', 'Gabriel Moreira', DATE'2001-12-02');
+INSERT INTO Pessoa VALUES ('11122233308', 'Fernanda', 'Almeida Cavalcanti', DATE'1985-02-27');
+INSERT INTO Pessoa VALUES ('11122233309', 'Rafael', 'Pereira Nunes', DATE'1997-08-09');
+INSERT INTO Pessoa VALUES ('11122233310', 'Camila', 'Rocha Medeiros', DATE'2004-04-16');
+INSERT INTO Pessoa VALUES ('11122233311', 'Thiago', 'Martins Duarte', DATE'1990-10-25');
+INSERT INTO Pessoa VALUES ('11122233312', 'Beatriz', 'Lopes Carvalho', DATE'1993-06-11');
+INSERT INTO Pessoa VALUES ('11122233313', 'Gustavo', 'Ferreira da Silva', DATE'1979-01-19');
+INSERT INTO Pessoa VALUES ('11122233314', 'Larissa', 'Tavares Monteiro', DATE'2006-08-23');
+INSERT INTO Pessoa VALUES ('11122233315', 'Diego', 'Cordeiro Vasconcelos', DATE'1994-12-31');
+INSERT INTO Pessoa VALUES ('11122233316', 'Isabela', 'Nascimento Freitas', DATE'2002-02-08');
+INSERT INTO Pessoa VALUES ('11122233317', 'Matheus', 'Barbosa Gomes', DATE'1998-03-03');
+INSERT INTO Pessoa VALUES ('11122233318', 'Letícia', 'Araújo Pinheiro', DATE'1987-11-17');
+INSERT INTO Pessoa VALUES ('11122233319', 'Bruno', 'Rêgo de Oliveira', DATE'1991-07-04');
+INSERT INTO Pessoa VALUES ('11122233320', 'Natália', 'Siqueira Bezerra', DATE'2005-09-12');
+INSERT INTO Pessoa VALUES ('11122233321', 'Vinícius', 'Machado Teixeira', DATE'1983-05-29');
+INSERT INTO Pessoa VALUES ('11122233322', 'Amanda', 'Muniz de Souza', DATE'1996-10-06');
+INSERT INTO Pessoa VALUES ('11122233323', 'Felipe', 'Melo Andrade', DATE'2000-06-21');
+INSERT INTO Pessoa VALUES ('11122233324', 'Gabriela', 'Dantas Villar', DATE'1989-04-13');
+INSERT INTO Pessoa VALUES ('11122233325', 'Henrique', 'Lins Cavalcante', DATE'1975-12-09');
+INSERT INTO Pessoa VALUES ('11122233326', 'Mariana', 'Guimarães Paiva', DATE'2007-01-26');
+INSERT INTO Pessoa VALUES ('11122233327', 'Rodrigo', 'Campos Peixoto', DATE'1986-08-15');
+INSERT INTO Pessoa VALUES ('11122233328', 'Aline', 'Xavier Brandão', DATE'1992-03-28');
+INSERT INTO Pessoa VALUES ('11122233329', 'Eduardo', 'Salgado Neto', DATE'1981-09-02');
+INSERT INTO Pessoa VALUES ('11122233330', 'Tainá', 'Albuquerque Lima', DATE'2003-05-07');
+
+-- TELEFONE_PESSOA --
+INSERT INTO TelefonePessoa VALUES ('11122233301', '81912345678');
+INSERT INTO TelefonePessoa VALUES ('11122233301', '81987654321');
+INSERT INTO TelefonePessoa VALUES ('11122233302', '81991112222');
+INSERT INTO TelefonePessoa VALUES ('11122233303', '11988887777');
+INSERT INTO TelefonePessoa VALUES ('11122233303', '1133334444');
+INSERT INTO TelefonePessoa VALUES ('11122233304', '81993334444');
+INSERT INTO TelefonePessoa VALUES ('11122233305', '21977776666');
+INSERT INTO TelefonePessoa VALUES ('11122233306', '31966665555');
+INSERT INTO TelefonePessoa VALUES ('11122233307', '81955554444');
+INSERT INTO TelefonePessoa VALUES ('11122233307', '81944443333');
+INSERT INTO TelefonePessoa VALUES ('11122233307', '8133335555');
+INSERT INTO TelefonePessoa VALUES ('11122233308', '8132221111');
+INSERT INTO TelefonePessoa VALUES ('11122233309', '11933332222');
+INSERT INTO TelefonePessoa VALUES ('11122233310', '81922221111');
+INSERT INTO TelefonePessoa VALUES ('11122233311', '21911110000');
+INSERT INTO TelefonePessoa VALUES ('11122233312', '31900009999');
+INSERT INTO TelefonePessoa VALUES ('11122233313', '85988776655');
+INSERT INTO TelefonePessoa VALUES ('11122233313', '8532224444');
+INSERT INTO TelefonePessoa VALUES ('11122233314', '71999887766');
+INSERT INTO TelefonePessoa VALUES ('11122233315', '81998765432');
+INSERT INTO TelefonePessoa VALUES ('11122233316', '11977665544');
+INSERT INTO TelefonePessoa VALUES ('11122233316', '11966554433');
+INSERT INTO TelefonePessoa VALUES ('11122233317', '21988001122');
+INSERT INTO TelefonePessoa VALUES ('11122233318', '31987001122');
+INSERT INTO TelefonePessoa VALUES ('11122233319', '81981234567');
+INSERT INTO TelefonePessoa VALUES ('11122233319', '81971234567');
+INSERT INTO TelefonePessoa VALUES ('11122233320', '85991230000');
+INSERT INTO TelefonePessoa VALUES ('11122233321', '71988112233');
+INSERT INTO TelefonePessoa VALUES ('11122233322', '81996541230');
+INSERT INTO TelefonePessoa VALUES ('11122233323', '81995432109');
+INSERT INTO TelefonePessoa VALUES ('11122233323', '8134445566');
+INSERT INTO TelefonePessoa VALUES ('11122233324', '11955443322');
+INSERT INTO TelefonePessoa VALUES ('11122233325', '21944332211');
+INSERT INTO TelefonePessoa VALUES ('11122233325', '2133221100');
+INSERT INTO TelefonePessoa VALUES ('11122233326', '31933221100');
+INSERT INTO TelefonePessoa VALUES ('11122233327', '85922110099');
+INSERT INTO TelefonePessoa VALUES ('11122233328', '71911009988');
+INSERT INTO TelefonePessoa VALUES ('11122233329', '81900998877');
+INSERT INTO TelefonePessoa VALUES ('11122233330', '81989990000');
+INSERT INTO TelefonePessoa VALUES ('11122233330', '81979990000');
+-- CEP --
+INSERT INTO Cep VALUES ('51110160', 'Avenida República do Líbano', 'Pina', 'Recife');
+INSERT INTO Cep VALUES ('04329000', 'Rodovia dos Imigrantes', 'Vila Guarani', 'São Paulo');
+INSERT INTO Cep VALUES ('02012021', 'Avenida Olavo Fontoura', 'Santana', 'São Paulo');
+INSERT INTO Cep VALUES ('22783127', 'Avenida Salvador Allende', 'Barra da Tijuca', 'Rio de Janeiro');
+INSERT INTO Cep VALUES ('30510000', 'Avenida Amazonas', 'Gameleira', 'Belo Horizonte');
+INSERT INTO Cep VALUES ('60811341', 'Avenida Washington Soares', 'Edson Queiroz', 'Fortaleza');
+INSERT INTO Cep VALUES ('41820021', 'Avenida Tancredo Neves', 'Caminho das Árvores', 'Salvador');
+
+-- LOCAL --
+INSERT INTO Local VALUES (1, 'Centro de Convenções de Pernambuco', 's/n', NULL, '51110160');
+INSERT INTO Local VALUES (2, 'Arena Recife Gamer', 's/n', 'Bloco B', '51110160');
+INSERT INTO Local VALUES (3, 'São Paulo Expo', 'km 1,5', 'Pavilhão Principal', '04329000');
+INSERT INTO Local VALUES (4, 'Distrito Anhembi', '1209', NULL, '02012021');
+INSERT INTO Local VALUES (5, 'Espaço Cosplay Santana', '1300', 'Galpão 2', '02012021');
+INSERT INTO Local VALUES (6, 'Riocentro', '6555', 'Pavilhão 6', '22783127');
+INSERT INTO Local VALUES (7, 'Expominas BH', '6030', NULL, '30510000');
+INSERT INTO Local VALUES (8, 'Centro de Eventos do Ceará', '999', 'Pavilhão Leste', '60811341');
+INSERT INTO Local VALUES (9, 'Centro de Convenções de Salvador', 's/n', NULL, '41820021');
