@@ -1,5 +1,5 @@
 CREATE TABLE Cupom(
-    codigo NUMBER,
+    codigo VARCHAR2(20),
     desconto NUMBER(5, 2) CONSTRAINT nn_desconto_cupom NOT NULL,
     data_validade DATE CONSTRAINT nn_data_validade_cupom NOT NULL,
     CONSTRAINT pk_cupom PRIMARY KEY(codigo),
