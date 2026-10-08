@@ -35,26 +35,29 @@ CREATE TABLE Local(
 
 CREATE TABLE CargoFuncionario(
     cargo VARCHAR2(50),
-    setor VARCHAR2(50),
+    setor VARCHAR2(50) CONSTRAINT nn_setor_cargo_funcionario NOT NULL,
     CONSTRAINT pk_cargo_funcionario PRIMARY KEY(cargo)
 );
 
-CREATE TABLE Funcionario (
+CREATE TABLE Funcionario(
     cpf_funcionario VARCHAR2(11), -- FK Pessoa(cpf)
     cargo VARCHAR2(50) CONSTRAINT nn_cargo_funcionario NOT NULL, -- FK CargoFuncionario(cargo)
     turno VARCHAR2(30),
-    salario NUMBER,
-    cpf_supervisor VARCHAR2(11), -- FK Funcionario(cpf_funcionario), nullable
+    salario NUMBER(10, 2),
+    cpf_supervisor VARCHAR2(11), -- FK Funcionario(cpf_funcionario), nulavel
     CONSTRAINT pk_funcionario PRIMARY KEY(cpf_funcionario),
-    CONSTRAINT fk_cpf_supervisor_funcionario_funcionario FOREIGN KEY(cpf_supervisor) REFERENCES Funcionario(cpf_funcionario),
-    CONSTRAINT chk_salario_funcionario_gt_0 CHECK(salario > 0)
+    CONSTRAINT chk_salario_funcionario_gt_0 CHECK(salario > 0),
+    CONSTRAINT chk_turno_funcionario_valores CHECK(turno IN ('Manhã', 'Tarde', 'Noite', 'Integral')),
+    CONSTRAINT chk_funcionario_nao_supervisiona_si CHECK(cpf_supervisor <> cpf_funcionario)
 );
 
-CREATE TABLE Contrata (
+CREATE TABLE Contrata(
     cpf_funcionario VARCHAR2(11), -- FK Funcionario(cpf_funcionario)
     cod_evento NUMBER, -- FK Edicao(cod_evento, ano)
     ano NUMBER, -- FK Edicao(cod_evento, ano)
     carga_horaria_prevista NUMBER,
     carga_horaria_realizada NUMBER,
-    CONSTRAINT pk_contrata PRIMARY KEY(cpf_funcionario, cod_evento, ano)
+    CONSTRAINT pk_contrata PRIMARY KEY(cpf_funcionario, cod_evento, ano),
+    CONSTRAINT chk_carga_prevista_contrata_gte_0 CHECK(carga_horaria_prevista >= 0),
+    CONSTRAINT chk_carga_realizada_contrata_gte_0 CHECK(carga_horaria_realizada >= 0)
 );

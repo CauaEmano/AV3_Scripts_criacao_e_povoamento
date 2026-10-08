@@ -3,6 +3,7 @@ CREATE TABLE Cupom(
     desconto NUMBER(5, 2) CONSTRAINT nn_desconto_cupom NOT NULL,
     data_validade DATE CONSTRAINT nn_data_validade_cupom NOT NULL,
     CONSTRAINT pk_cupom PRIMARY KEY(codigo),
+    CONSTRAINT chk_codigo_cupom_formato CHECK(REGEXP_LIKE(codigo, '^[A-Z0-9]{3,20}$')),
     CONSTRAINT chk_desconto_cupom_between_0_100 CHECK(desconto BETWEEN 0 AND 100)
 );
 
@@ -10,37 +11,40 @@ CREATE TABLE Recibo(
     codigo NUMBER,
     data_compra DATE CONSTRAINT nn_data_compra_recibo NOT NULL,
     valor_compra NUMBER(10, 2) CONSTRAINT nn_valor_compra_recibo NOT NULL,
-    CONSTRAINT pk_recibo PRIMARY KEY (codigo),
+    CONSTRAINT pk_recibo PRIMARY KEY(codigo),
     CONSTRAINT chk_valor_compra_recibo_gte_0 CHECK(valor_compra >= 0)
 );
 
 CREATE TABLE InstanciaIngresso(
-    cod_evento NUMBER, -- FK Edicao(cod_evento)
-    ano NUMBER, -- FK Edicao(ano)
+    cod_evento NUMBER, -- FK Edicao(cod_evento, ano)
+    ano NUMBER, -- FK Edicao(cod_evento, ano)
     tipo VARCHAR2(40),
     lote NUMBER,
     preco NUMBER(10, 2) CONSTRAINT nn_preco_instancia_ingresso NOT NULL,
-    CONSTRAINT pk_instancia_ingresso PRIMARY KEY (cod_evento, ano, tipo, lote),
+    CONSTRAINT pk_instancia_ingresso PRIMARY KEY(cod_evento, ano, tipo, lote),
+    CONSTRAINT chk_tipo_instancia_ingresso_valores CHECK(tipo IN ('INTEIRA', 'MEIA', 'VIP')),
+    CONSTRAINT chk_lote_instancia_ingresso_gt_0 CHECK(lote > 0),
     CONSTRAINT chk_preco_instancia_ingresso_gte_0 CHECK(preco >= 0)
 );
 
 CREATE TABLE Ingresso(
     codigo NUMBER,
     cpf_pessoa VARCHAR2(11), -- FK Pessoa(cpf)
-    cod_evento NUMBER, -- FK InstanciaIngresso(cod_evento)
-    ano NUMBER, -- FK InstanciaIngresso(ano)
-    tipo VARCHAR2(40), -- FK InstanciaIngresso(tipo)
-    lote NUMBER, -- FK InstanciaIngresso(lote)
+    cod_evento NUMBER CONSTRAINT nn_cod_evento_ingresso NOT NULL, -- FK InstanciaIngresso
+    ano NUMBER CONSTRAINT nn_ano_ingresso NOT NULL, -- FK InstanciaIngresso
+    tipo VARCHAR2(40) CONSTRAINT nn_tipo_ingresso NOT NULL, -- FK InstanciaIngresso
+    lote NUMBER CONSTRAINT nn_lote_ingresso NOT NULL, -- FK InstanciaIngresso
     status_check_in VARCHAR2(20) CONSTRAINT nn_status_check_in_ingresso NOT NULL,
-    CONSTRAINT pk_ingresso PRIMARY KEY(codigo)
+    CONSTRAINT pk_ingresso PRIMARY KEY(codigo),
+    CONSTRAINT chk_status_check_in_ingresso_valores CHECK(status_check_in IN ('REALIZADO', 'NAO_REALIZADO'))
 );
 
 CREATE TABLE CompraIngresso(
     cod_ingresso NUMBER, -- FK Ingresso(codigo)
     cpf_comprador VARCHAR2(11) CONSTRAINT nn_cpf_comprador_compra_ingresso NOT NULL, -- FK Pessoa(cpf)
     cod_recibo NUMBER CONSTRAINT nn_cod_recibo_compra_ingresso NOT NULL, -- FK Recibo(codigo)
-    cod_cupom NUMBER CONSTRAINT nn_cod_cupom_compra_ingresso NOT NULL, -- FK Cupom(codigo)
-    valor_pago NUMBER(10, 2),
+    cod_cupom VARCHAR2(20), -- FK Cupom(codigo), nulavel (compra sem cupom)
+    valor_pago NUMBER(10, 2) CONSTRAINT nn_valor_pago_compra_ingresso NOT NULL,
     CONSTRAINT pk_compra_ingresso PRIMARY KEY(cod_ingresso),
     CONSTRAINT chk_valor_pago_compra_ingresso_gte_0 CHECK(valor_pago >= 0)
 );
@@ -68,10 +72,10 @@ CREATE TABLE Atracao(
     CONSTRAINT pk_atracao PRIMARY KEY(cod_atv),
     CONSTRAINT chk_cache_convidado_atracao_gte_0 CHECK(cache_convidado >= 0)
 );
- 
+
 CREATE TABLE Torneio(
     cod_atv NUMBER, -- FK Atividade(cod_atv)
-    premiacao NUMBER CONSTRAINT nn_premiacao_torneio NOT NULL,
+    premiacao NUMBER(10, 2) CONSTRAINT nn_premiacao_torneio NOT NULL,
     plataforma VARCHAR2(50) CONSTRAINT nn_plataforma_torneio NOT NULL,
     vagas NUMBER CONSTRAINT nn_vagas_torneio NOT NULL,
     regulamento VARCHAR2(4000),
@@ -79,13 +83,13 @@ CREATE TABLE Torneio(
     CONSTRAINT chk_premiacao_torneio_gte_0 CHECK(premiacao >= 0),
     CONSTRAINT chk_vagas_torneio_gt_0 CHECK(vagas > 0)
 );
- 
+
 CREATE TABLE Assiste(
     cpf VARCHAR2(11), -- FK Pessoa(cpf)
     cod_atv NUMBER, -- FK Atividade(cod_atv)
     CONSTRAINT pk_assiste PRIMARY KEY(cpf, cod_atv)
 );
- 
+
 CREATE TABLE Inscreve(
     cpf VARCHAR2(11), -- FK Pessoa(cpf)
     cod_torneio NUMBER, -- FK Torneio(cod_atv)
@@ -93,5 +97,6 @@ CREATE TABLE Inscreve(
     posicao_final NUMBER,
     CONSTRAINT pk_inscreve PRIMARY KEY(cpf, cod_torneio),
     CONSTRAINT uq_cod_torneio_inscricao_inscreve UNIQUE(cod_torneio, inscricao),
+    CONSTRAINT chk_inscricao_inscreve_gt_0 CHECK(inscricao > 0),
     CONSTRAINT chk_posicao_final_inscreve_gt_0 CHECK(posicao_final > 0)
 );
