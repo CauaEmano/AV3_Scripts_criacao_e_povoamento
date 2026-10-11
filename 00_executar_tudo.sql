@@ -4,9 +4,13 @@
 @scripts_criacao/03_create_evento_e_comercial.sql
 @scripts_criacao/04_create_financeiro_e_atividades.sql
 @scripts_criacao/05_add_fks.sql
+-- EVITA QUE STRINGS COM "&" SEJAM VISTAS COMO VARIÁVEIS DE SUBSTITUIÇÃO
+SET DEFINE OFF;
 @scripts_povoamento/06_insert_evento_locais.sql
 @scripts_povoamento/07_insert_pessoas_rh.sql
 @scripts_povoamento/08_insert_comercial.sql
 @scripts_povoamento/09_insert_ingressos.sql
 @scripts_povoamento/10_insert_atividades.sql
+-- REATIVA AS VARIÁVEIS DE SUBSTITUIÇÃO
+SET DEFINE ON;
 @scripts_apoio/11_consultas_validacao.sql
