@@ -1,6 +1,13 @@
 # Banco de Dados - Evento de Cultura Pop (Entrega AV3)
 
-Equipe: _(preencher nomes)_
+Equipe 04:
+
+- Allan Fernandes
+- Allanis Beatriz
+- Amanda Pereira
+- Arthur Luz
+- Cauã Emanuel
+- Felipe Albuquerque
 
 Scripts Oracle de criação e povoamento a partir do Esquema Relacional Normalizado (AV2).
 
