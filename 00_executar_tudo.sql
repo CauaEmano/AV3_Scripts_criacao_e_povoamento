@@ -14,3 +14,6 @@ SET DEFINE OFF;
 -- REATIVA AS VARIÁVEIS DE SUBSTITUIÇÃO
 SET DEFINE ON;
 @scripts_apoio/11_consultas_validacao.sql
+
+
+@13_joins_subconsultas_view.sql
