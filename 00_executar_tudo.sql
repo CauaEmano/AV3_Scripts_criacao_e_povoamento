@@ -18,3 +18,6 @@ SET DEFINE ON;
 @oracle_packages/pkg_update.sql
 @oracle_functions/timestamp_overlap.sql
 @oracle_triggers/trg_atividade_timestamp_overlap.sql
+
+
+@13_joins_subconsultas_view.sql
