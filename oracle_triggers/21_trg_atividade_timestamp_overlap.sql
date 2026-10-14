@@ -34,7 +34,7 @@ COMPOUND TRIGGER
 
             v_rec_atividade := v_t_atividade(i);
 
-            IF INSERTING OR UPDATING AND :NEW.cod_atv <> v_rec_atividade.cod_atv THEN
+            IF INSERTING OR (UPDATING AND :NEW.cod_atv <> v_rec_atividade.cod_atv) THEN
 
                 IF (
                     :NEW.cod_local = v_rec_atividade.cod_local AND
