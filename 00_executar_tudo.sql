@@ -14,6 +14,10 @@ SET DEFINE OFF;
 -- REATIVA AS VARIÁVEIS DE SUBSTITUIÇÃO
 SET DEFINE ON;
 @scripts_apoio/11_consultas_validacao.sql
+@oracle_packages/pkg_register.sql
+@oracle_packages/pkg_update.sql
+@oracle_functions/timestamp_overlap.sql
+@oracle_triggers/trg_atividade_timestamp_overlap.sql
 
 
 @13_joins_subconsultas_view.sql
