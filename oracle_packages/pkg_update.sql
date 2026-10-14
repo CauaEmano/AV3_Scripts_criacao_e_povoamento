@@ -11,7 +11,7 @@ CREATE OR REPLACE PACKAGE pkg_funcionario AS
 
     PROCEDURE alterar_supervisor(
         p_cpf IN Funcionario.cpf_funcionario%TYPE,
-        p_novo_supervisor IN Funcionario.cpf_funcionario%TYPE
+        p_novo_supervisor IN Funcionario.cpf_supervisor%TYPE
     );
 
 END pkg_funcionario;
