@@ -28,13 +28,13 @@ SET DEFINE ON;
 @scripts_consulta/16_permissoes_grant_revoke.sql
 
 -- 4) AV4 - PL/SQL: funcoes, pacotes, procedures e triggers (nesta ordem)
-@scripts_plsql/17_function_timestamp_overlap.sql
-@scripts_plsql/18_pkg_register.sql
-@scripts_plsql/19_pkg_funcionario.sql
-@scripts_plsql/20_funcoes_procedures.sql
-@scripts_plsql/21_trigger_atividade_overlap.sql
-@scripts_plsql/22_trigger_compra_ingresso.sql
-@scripts_plsql/23_trigger_auditoria_cupom.sql
+@oracle_functions/17_functions.sql
+@oracle_procedures/18_procedures.sql
+@oracle_packages/19_pkg_register.sql
+@oracle_packages/20_pkg_funcionario.sql
+@oracle_triggers/21_trigger_atividade_timestamp_overlap.sql
+@oracle_triggers/22_trigger_compra_ingresso.sql
+@oracle_triggers/23_trigger_auditoria_cupom.sql
 
 -- 5) Demonstracao do PL/SQL
-@scripts_plsql/24_demo_plsql.sql
+@24_demo_plsql.sql

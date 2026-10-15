@@ -39,7 +39,7 @@ COMPOUND TRIGGER
                 IF (
                     :NEW.cod_local = v_rec_atividade.cod_local AND
                     :NEW.cod_area = v_rec_atividade.cod_area AND
-                    timestamp_overlap(
+                    fn_timestamp_overlap(
                         :NEW.data_hora_inicio,
                         :NEW.data_hora_fim,
                         v_rec_atividade.data_hora_inicio,

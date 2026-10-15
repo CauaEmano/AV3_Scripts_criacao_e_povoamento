@@ -1,13 +1,39 @@
 BEGIN
-    FOR t IN (SELECT table_name FROM user_tables
-              WHERE table_name IN ('PESSOA','TELEFONEPESSOA','CARGOFUNCIONARIO','FUNCIONARIO','EVENTO','EDICAO',
-                                   'CONTRATA','CEP','LOCAL','AREA','EDICAOLOCAL','EMPRESA','PRODUTO','ESTANDE',
-                                   'DISPONIBILIZA','PATROCINA','CUPOM','RECIBO','INSTANCIAINGRESSO','INGRESSO',
-                                   'COMPRAINGRESSO','ATIVIDADE','ATRACAO','TORNEIO','ASSISTE','INSCREVE')) LOOP
-        EXECUTE IMMEDIATE 'DROP TABLE ' || t.table_name || ' CASCADE CONSTRAINTS PURGE';
+
+	-- DROP TABLES
+    FOR tbl IN (SELECT table_name FROM user_tables) LOOP
+		EXECUTE IMMEDIATE 'DROP TABLE ' || tbl.table_name || ' CASCADE CONSTRAINTS PURGE';
+	END LOOP;
+	
+	-- DROP VIEWS
+	FOR v IN (SELECT view_name FROM user_views) LOOP
+		EXECUTE IMMEDIATE 'DROP VIEW ' || v.view_name;
+	END LOOP;
+	
+	-- DROP SEQUENCES
+    FOR seq IN (SELECT sequence_name FROM user_sequences) LOOP
+		EXECUTE IMMEDIATE 'DROP SEQUENCE ' || seq.sequence_name;
+	END LOOP;
+	
+	-- DROP PROCEDURES
+    FOR proc IN (SELECT object_name FROM user_objects WHERE object_type = 'PROCEDURE') LOOP
+        EXECUTE IMMEDIATE 'DROP PROCEDURE ' || proc.object_name;
     END LOOP;
-    FOR s IN (SELECT sequence_name FROM user_sequences WHERE sequence_name LIKE 'SEQ_PK_%') LOOP
-        EXECUTE IMMEDIATE 'DROP SEQUENCE ' || s.sequence_name;
+
+    -- DROP FUNCTIONS
+    FOR func IN (SELECT object_name FROM user_objects WHERE object_type = 'FUNCTION') LOOP
+        EXECUTE IMMEDIATE 'DROP FUNCTION ' || func.object_name;
     END LOOP;
+	
+	-- DROP PACKAGES
+    FOR pkg IN (SELECT object_name FROM user_objects WHERE object_type = 'PACKAGE') LOOP
+        EXECUTE IMMEDIATE 'DROP PACKAGE ' || pkg.object_name;
+    END LOOP;
+	
+	-- DROP TRIGGERS
+	FOR trg IN (SELECT trigger_name FROM user_triggers) LOOP
+        EXECUTE IMMEDIATE 'DROP TRIGGER ' || trg.trigger_name;
+    END LOOP;
+	
 END;
 /
