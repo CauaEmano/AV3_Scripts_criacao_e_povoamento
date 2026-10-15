@@ -1,6 +1,7 @@
 -- ---------------------------------------------------------------------
--- fn_receita_edicao: compara duas faixas de horário. Retorna TRUE caso
--- exista uma colisão entre os horário e FALSE caso contrário
+-- fn_timestamp_overlap: compara duas faixas de horário. Retorna TRUE caso
+-- exista uma colisão entre os horários e FALSE caso contrário (faixas que
+-- apenas se encostam não contam como colisão). Usada pelo trigger de Atividade.
 -- ---------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fn_timestamp_overlap (
     start1 IN Atividade.data_hora_inicio%TYPE,

@@ -41,28 +41,28 @@ recurso é usado. As consultas Q1 a Q18 são numeradas nos comentários dos scri
 
 | # | Item | Onde | Observação |
 |---|---|---|---|
-| 1 | Uso de RECORD | `scripts_plsql/21_trigger_atividade_overlap.sql` (linha 15) | rec_atividade; tambem em scripts_plsql/24_demo_plsql.sql (t_produto) |
-| 2 | Estrutura do tipo TABLE | `scripts_plsql/21_trigger_atividade_overlap.sql` (linha 23) | colecao INDEX BY; tambem em scripts_plsql/24_demo_plsql.sql |
-| 3 | Bloco anonimo | `scripts_plsql/24_demo_plsql.sql` (linha 38) | varios blocos anonimos de demonstracao |
-| 4 | CREATE PROCEDURE | `scripts_plsql/20_funcoes_procedures.sql` (linha 82) | 4 procedures avulsas; tambem as dos pacotes (18 e 19) |
-| 5 | CREATE FUNCTION | `scripts_plsql/20_funcoes_procedures.sql` (linha 15) | fn_receita_edicao, fn_status_vagas e scripts_plsql/17_function_timestamp_overlap.sql |
-| 6 | %TYPE | `scripts_plsql/20_funcoes_procedures.sql` (linha 16) | em todos os arquivos PL |
-| 7 | %ROWTYPE | `scripts_plsql/18_pkg_register.sql` (linha 50) | registros de insercao; c_edicoes%ROWTYPE em scripts_plsql/20_funcoes_procedures.sql |
-| 8 | IF ELSIF | `scripts_plsql/20_funcoes_procedures.sql` (linha 136) | prc_realizar_checkin; tambem scripts_plsql/21_trigger_atividade_overlap.sql e scripts_plsql/23_trigger_auditoria_cupom.sql |
-| 9 | CASE WHEN | `scripts_plsql/20_funcoes_procedures.sql` (linha 62) | fn_status_vagas (CASE ... END CASE) |
-| 10 | LOOP EXIT WHEN | `scripts_plsql/20_funcoes_procedures.sql` (linha 175) | prc_relatorio_receita |
-| 11 | WHILE LOOP | `scripts_plsql/21_trigger_atividade_overlap.sql` (linha 43) | trigger de Atividade; tambem scripts_plsql/24_demo_plsql.sql |
-| 12 | FOR IN LOOP | `scripts_plsql/20_funcoes_procedures.sql` (linha 204) | prc_relatorio_torneios |
-| 13 | SELECT ... INTO | `scripts_plsql/20_funcoes_procedures.sql` (linha 24) | fn_receita_edicao e outras; tambem scripts_plsql/19_pkg_funcionario.sql |
-| 14 | CURSOR (OPEN, FETCH, CLOSE) | `scripts_plsql/20_funcoes_procedures.sql` (linha 171) | prc_relatorio_receita |
-| 15 | EXCEPTION WHEN | `scripts_plsql/20_funcoes_procedures.sql` (linha 72) | todas as unidades PL; DUP_VAL_ON_INDEX em scripts_plsql/18_pkg_register.sql |
-| 16 | Parametros IN, OUT e IN OUT | `scripts_plsql/20_funcoes_procedures.sql` (linha 85) | IN OUT em prc_aplicar_cupom e OUT em prc_realizar_checkin |
-| 17 | CREATE OR REPLACE PACKAGE | `scripts_plsql/18_pkg_register.sql` (linha 9) | pkg_register e pkg_funcionario (scripts_plsql/19_pkg_funcionario.sql) |
-| 18 | CREATE OR REPLACE PACKAGE BODY | `scripts_plsql/18_pkg_register.sql` (linha 40) | pkg_register e pkg_funcionario (scripts_plsql/19_pkg_funcionario.sql) |
-| 19 | CREATE OR REPLACE TRIGGER (comando) | `scripts_plsql/23_trigger_auditoria_cupom.sql` (linha 20) | trg_cupom_auditoria_cmd: dispara uma vez por instrucao |
-| 20 | CREATE OR REPLACE TRIGGER (linha) | `scripts_plsql/22_trigger_compra_ingresso.sql` (linha 12) | trg_compra_ingresso_valida; tambem as secoes de linha do composto em scripts_plsql/21_trigger_atividade_overlap.sql |
+| 1 | Uso de RECORD | `oracle_triggers/21_trigger_atividade_timestamp_overlap.sql` (linha 5) | rec_atividade; tambem em 24_demo_plsql.sql (t_produto) |
+| 2 | Estrutura do tipo TABLE | `oracle_triggers/21_trigger_atividade_timestamp_overlap.sql` (linha 13) | colecao INDEX BY; tambem em 24_demo_plsql.sql |
+| 3 | Bloco anonimo | `24_demo_plsql.sql` (linha 29) | varios blocos anonimos de demonstracao |
+| 4 | CREATE PROCEDURE | `oracle_procedures/18_procedures.sql` (linha 6) | 4 procedures avulsas; tambem as dos pacotes (oracle_packages/19_pkg_register.sql e oracle_packages/20_pkg_funcionario.sql) |
+| 5 | CREATE FUNCTION | `oracle_functions/17_functions.sql` (linha 6) | fn_timestamp_overlap, fn_receita_edicao e fn_status_vagas |
+| 6 | %TYPE | `oracle_functions/17_functions.sql` (linha 7) | em todos os arquivos PL |
+| 7 | %ROWTYPE | `oracle_packages/19_pkg_register.sql` (linha 42) | registros de insercao; c_edicoes%ROWTYPE em oracle_procedures/18_procedures.sql |
+| 8 | IF ELSIF | `oracle_procedures/18_procedures.sql` (linha 60) | prc_realizar_checkin; tambem oracle_triggers/21_trigger_atividade_timestamp_overlap.sql e oracle_triggers/23_trigger_auditoria_cupom.sql |
+| 9 | CASE WHEN | `oracle_functions/17_functions.sql` (linha 69) | fn_status_vagas (CASE ... END CASE) |
+| 10 | LOOP EXIT WHEN | `oracle_procedures/18_procedures.sql` (linha 99) | prc_relatorio_receita |
+| 11 | WHILE LOOP | `oracle_triggers/21_trigger_atividade_timestamp_overlap.sql` (linha 33) | trigger de Atividade; tambem 24_demo_plsql.sql |
+| 12 | FOR IN LOOP | `oracle_procedures/18_procedures.sql` (linha 128) | prc_relatorio_torneios |
+| 13 | SELECT ... INTO | `oracle_functions/17_functions.sql` (linha 31) | fn_receita_edicao e outras; tambem oracle_packages/20_pkg_funcionario.sql |
+| 14 | CURSOR (OPEN, FETCH, CLOSE) | `oracle_procedures/18_procedures.sql` (linha 95) | prc_relatorio_receita |
+| 15 | EXCEPTION WHEN | `oracle_functions/17_functions.sql` (linha 79) | todas as unidades PL; DUP_VAL_ON_INDEX em oracle_packages/19_pkg_register.sql |
+| 16 | Parametros IN, OUT e IN OUT | `oracle_procedures/18_procedures.sql` (linha 9) | IN OUT em prc_aplicar_cupom e OUT em prc_realizar_checkin |
+| 17 | CREATE OR REPLACE PACKAGE | `oracle_packages/19_pkg_register.sql` (linha 1) | pkg_register e pkg_funcionario (oracle_packages/20_pkg_funcionario.sql) |
+| 18 | CREATE OR REPLACE PACKAGE BODY | `oracle_packages/19_pkg_register.sql` (linha 32) | pkg_register e pkg_funcionario (oracle_packages/20_pkg_funcionario.sql) |
+| 19 | CREATE OR REPLACE TRIGGER (comando) | `oracle_triggers/23_trigger_auditoria_cupom.sql` (linha 12) | trg_cupom_auditoria_cmd: dispara uma vez por instrucao |
+| 20 | CREATE OR REPLACE TRIGGER (linha) | `oracle_triggers/22_trigger_compra_ingresso.sql` (linha 3) | trg_compra_ingresso_valida; tambem as secoes de linha do composto em oracle_triggers/21_trigger_atividade_timestamp_overlap.sql |
 
 ## Como executar e conferir
 1. Rode `00_executar_tudo.sql` (ou cada arquivo na ordem do README).
-2. As saídas do PL/SQL aparecem em `scripts_plsql/24_demo_plsql.sql` (DBMS_OUTPUT).
+2. As saídas do PL/SQL aparecem em `24_demo_plsql.sql` (DBMS_OUTPUT).
 3. `scripts_apoio/11_consultas_validacao.sql` confere o povoamento (contagens, especialização e recibos).
