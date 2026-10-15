@@ -90,6 +90,9 @@ CREATE OR REPLACE PACKAGE BODY pkg_funcionario AS
     )
 
     IS
+        -- ORA-02291: o supervisor informado nao existe em Funcionario (FK)
+        e_supervisor_inexistente EXCEPTION;
+        PRAGMA EXCEPTION_INIT(e_supervisor_inexistente, -2291);
     BEGIN
         IF p_cpf = p_novo_supervisor THEN
             RAISE_APPLICATION_ERROR(
@@ -112,6 +115,12 @@ CREATE OR REPLACE PACKAGE BODY pkg_funcionario AS
             );
 
         END IF;
+
+    EXCEPTION
+        WHEN e_supervisor_inexistente THEN
+            DBMS_OUTPUT.PUT_LINE(
+                'Supervisor informado nao existe como funcionario.'
+            );
     END alterar_supervisor;
 
 END pkg_funcionario;

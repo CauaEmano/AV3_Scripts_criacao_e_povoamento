@@ -34,12 +34,12 @@ COMPOUND TRIGGER
 
             v_rec_atividade := v_t_atividade(i);
 
-            IF INSERTING OR UPDATING AND :NEW.cod_atv <> v_rec_atividade.cod_atv THEN
+            IF INSERTING OR (UPDATING AND :NEW.cod_atv <> v_rec_atividade.cod_atv) THEN
 
                 IF (
                     :NEW.cod_local = v_rec_atividade.cod_local AND
                     :NEW.cod_area = v_rec_atividade.cod_area AND
-                    timestamp_overlap(
+                    fn_timestamp_overlap(
                         :NEW.data_hora_inicio,
                         :NEW.data_hora_fim,
                         v_rec_atividade.data_hora_inicio,

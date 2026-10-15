@@ -1,31 +1,59 @@
-## REGRAS DE NOMEAÇÃO E ESTRUTURA DA AV3
+## REGRAS DE NOMEAÇÃO E ESTRUTURA DO PROJETO (AV3 e AV4)
+
+### Estrutura de pastas e numeração
+Os arquivos são numerados na ordem de execução. O número nunca se repete.
+```
+scripts_criacao/      01 a 05  sequences, tabelas (3 arquivos por subtema) e FKs
+scripts_povoamento/   06 a 10  INSERTs (evento_locais, pessoas_rh, comercial, ingressos, atividades)
+scripts_apoio/        11 consultas de validação do povoamento · 99 drop_all
+scripts_consulta/     12 a 16  ALTER/INDEX, consultas, DML e GRANT/REVOKE (AV4 - SQL)
+oracle_functions/     17       funções
+oracle_procedures/    18       procedures avulsas
+oracle_packages/      19 e 20  pacotes (cadastro e funcionário)
+oracle_triggers/      21 a 23  triggers (composto, de linha e de comando)
+24_demo_plsql.sql     demonstração do PL/SQL (na raiz)
+```
 
 ### Arquivos CREATE
-Serão gerados 3 arquivos .sql para a criação de tabelas referentes aos subtemas do projeto:
+Três arquivos .sql para a criação de tabelas, um por subtema do projeto:
 ```
-Fundação e RH -> create_fundacao_e_rh.sql
-Estrutura do Evento e Comercial -> create_evento_e_comercial.sql
-Financeiro e Atividades -> create_financeiro_e_atividades.sql
+Fundação e RH                    -> 02_create_fundacao_e_rh.sql
+Estrutura do Evento e Comercial  -> 03_create_evento_e_comercial.sql
+Financeiro e Atividades          -> 04_create_financeiro_e_atividades.sql
 ```
 
-### Arquivos INSERT
-Serão gerados 3 arquivos .sql para a população das tabelas referentes aos subtemas do projeto:
+### Arquivos de povoamento
 ```
-Fundação e RH -> insert_fundacao_e_rh.sql
-Estrutura do Evento e Comercial -> insert_evento_e_comercial.sql
-Financeiro e Atividades -> insert_financeiro_e_atividades.sql
+06_insert_evento_locais.sql   07_insert_pessoas_rh.sql   08_insert_comercial.sql
+09_insert_ingressos.sql       10_insert_atividades.sql
 ```
 
 ### Outros arquivos
 ```
-create_sequences.sql -> Implementação das sequências
-add_fks.sql -> Implementação das FKs
+01_create_sequences.sql -> Implementação das sequências
+05_add_fks.sql          -> Implementação das FKs
+99_drop_all.sql         -> Remove tudo para reexecutar do zero
 ```
 
 ### Ordem de execução
-Os arquivos serão executados na ordem do seguinte roteiro:
+A ordem oficial está em `00_executar_tudo.sql`:
 ```
-CREATE TABLES -> INSERT TABLES -> CREATE SEQUENCES -> ADD FKS
+DROP -> SEQUENCES -> CREATE TABLES -> ADD FKS -> INSERTS -> ALTER/INDEX -> CONSULTAS -> DML -> PL/SQL -> DEMO
+```
+As FKs só são criadas depois de todas as tabelas, e o PL/SQL só depois do povoamento
+(os triggers não devem interferir na carga inicial).
+
+### Nomeação de objetos PL/SQL (AV4)
+```
+Função avulsa       -> fn_<o_que_retorna>          (ex.: fn_receita_edicao)
+Procedure avulsa    -> prc_<acao>                  (ex.: prc_realizar_checkin)
+Pacote              -> pkg_<assunto>               (ex.: pkg_funcionario)
+Trigger             -> trg_<tabela>_<regra>[_cmd]  (sufixo _cmd = nível de comando)
+View                -> vw_<descricao>
+Índice              -> idx_<tabela>_<colunas>
+Parâmetros          -> p_<nome> (entrada/saída) e variáveis locais v_<nome>
+Cursores            -> c_<nome>        Tipos (RECORD/TABLE) -> t_<nome>
+Erros de aplicação  -> RAISE_APPLICATION_ERROR com códigos -20000 a -20999 (um por regra)
 ```
 
 ### Padrões de capitalização:
